@@ -61,9 +61,6 @@ typedef struct s_fractal_vars
     int iter;
 } t_fractal_vars;
 
-//fractal
-void    mandelbrot(t_fractol *fract);
-int mandelbrot_iter(double cr, double ci);
 //utils
 int     create_trgb(int t, int r, int g, int b);
 void render_fractal(t_fractol *fract);
@@ -79,6 +76,8 @@ int main();
 //extras
 void ft_change_psychedelic_mode(t_fractol *fract);
 int ft_animate_psychedelic(t_fractol *fract);
+void init_fractol(t_fractol *fract);
+int parse_fractal_type(t_fractol *fract, char *arg);
 
 
 //printf

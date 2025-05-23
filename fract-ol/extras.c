@@ -1,37 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   extras.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/21 17:09:34 by gguillen          #+#    #+#             */
+/*   Updated: 2025/05/23 16:06:58 by gguillen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
-#include <stdio.h>  // Para debug con printf
 
-
-void ft_change_psychedelic_mode(t_fractol *fract)
+void	ft_change_psychedelic_mode(t_fractol *fract)
 {
-    // Cambiar entre las 5 paletas disponibles
-    fract->psychedelic_mode = (fract->psychedelic_mode + 1) % 5; // Cambia entre 5 paletas
-    render_fractal(fract);  // Redibujar el fractal con la nueva paleta
+	fract->psychedelic_mode = (fract->psychedelic_mode + 1) % 5;
+	render_fractal(fract);
 }
 
-
-int ft_animate_psychedelic(t_fractol *fract)
+void	init_fractol(t_fractol *fract)
 {
-    static int frame = 0;  // Variable para controlar la velocidad de la animación
-
-    // Verifica si el modo psicodélico está activado
-    if (fract->psychedelic_flag == 0)
-    {
-        return 0; // No hacer nada si el modo psicodélico está desactivado
-    }
-    // Controla la velocidad de cambio (cada 10 frames cambia el color)
-    if (frame % 10 == 0)  
-    {
-        // Cambia la fase del color para generar un cambio en el color
-        fract->color_phase += 0.1; 
-        // Limitar el valor para evitar un valor muy grande
-        if (fract->color_phase > 1000.0)
-        {
-            fract->color_phase = 0.0; // Resetea la fase
-        }
-        render_fractal(fract);  // Redibuja el fractal con el nuevo color
-    }
-    frame++;  // Incrementa el contador de frames
-    return 0;
+	fract->mlx = mlx_init();
+	fract->win = mlx_new_window(fract->mlx, WIDTH, HEIGHT, "Fract'ol");
+	fract->psychedelic_flag = -1;
+	fract->psychedelic_mode = -1;
+	fract->color_phase = 0.0;
+	fract->color = 0xFFFFFF;
+	fract->img = mlx_new_image(fract->mlx, WIDTH, HEIGHT);
+	fract->addr = mlx_get_data_addr(fract->img, &fract->bpp,
+			&fract->line_length, &fract->endian);
+	fract->max_iter = MAX_ITER;
+	fract->min_re = -2.0;
+	fract->max_re = 2.0;
+	fract->min_im = -2.0;
+	fract->max_im = 2.0;
 }
 
+int	parse_fractal_type(t_fractol *fract, char *arg)
+{
+	if (arg[0] == 'm' || arg[0] == 'M')
+		fract->fractal_type = 0;
+	else if (arg[0] == 'j' || arg[0] == 'J')
+		fract->fractal_type = 1;
+	else if (arg[0] == 's' || arg[0] == 'S')
+		fract->fractal_type = 2;
+	else
+		return (0);
+	return (1);
+}
+
+void	init_fractal_vars(t_fractal_vars *vars, t_fractol *fract, int x, int y)
+{
+	vars->pr = fract->min_re + (x / (double)WIDTH) * (fract->max_re - fract->min_re);
+	vars->pi = fract->min_im + (y / (double)HEIGHT) * (fract->max_im - fract->min_im);
+	vars->old_re = vars->pr;
+	vars->old_im = vars->pi;
+	vars->i = 0;
+}

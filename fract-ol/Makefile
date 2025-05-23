@@ -1,16 +1,25 @@
-# Nombre del programa final
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/05/21 17:05:25 by gguillen          #+#    #+#              #
+#    Updated: 2025/05/21 17:07:31 by gguillen         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = fractol
 
-# Compilador y opciones
+
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-# Rutas de los archivos fuente
+
 SRCS = main.c \
-       mandelbrot.c \
        utils.c \
 	   utils1.c \
-	   julia.c \
 	   extras.c \
 	   ft_printf.c \
        ft_printf_outils.c \
@@ -18,35 +27,35 @@ SRCS = main.c \
        ft_printf_outils2.c \
        ft_printf_outils3.c \
 
-# Archivos objeto generados a partir de los .c
+
 OBJS = $(SRCS:.c=.o)
 
-# Ruta de MiniLibX
-LIBMLX_PATH = /home/papprikka/fract-ol/lib/minilibx
+
+LIBMLX_PATH = /home/gguillen/fractol/fractol/fract-ol/minilibx-linux
 MLX_FLAGS = -L$(LIBMLX_PATH) -lmlx -L/usr/include/X11 -lXext -lX11 -lm -lbsd
 INCLUDES = -I$(LIBMLX_PATH)
 
-# Objetivo por defecto
+
 all: $(NAME)
 
-# Regla para compilar los archivos objeto
+
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
-# Compilación del programa
+
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLX_FLAGS)
 
-# Eliminar los archivos objeto
+
 clean:
 	rm -f $(OBJS)
 
-# Eliminar los archivos objeto y el ejecutable
+
 fclean: clean
 	rm -f $(NAME)
 
-# Volver a compilar todo
+
 re: fclean all
 
-# Indica que los siguientes objetivos no son archivos reales
+
 .PHONY: all clean fclean re
