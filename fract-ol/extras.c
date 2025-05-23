@@ -6,7 +6,7 @@
 /*   By: papprikka <papprikka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:09:34 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/23 19:08:07 by papprikka        ###   ########.fr       */
+/*   Updated: 2025/05/23 19:33:33 by papprikka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,26 @@ void	init_fractol(t_fractol *fract)
 	fract->max_re = 2.0;
 	fract->min_im = -2.0;
 	fract->max_im = 2.0;
-	if (fract->fractal_type == 1)
-	{
-		fract->c_re = -0.7;
-		fract->c_im = 0.27015;
-	}
 }
 
-int	parse_fractal_type(t_fractol *fract, char *arg)
+int	parse_fractal_type(t_fractol *fract, int argc, char *argv)
 {
-	if (arg && arg[0] && arg[1] == '\0')
+	if (argv && argv[0] && argv[1] == '\0')
 	{
-		if (arg[0] == 'm' || arg[0] == 'M')
+		if (argv[0] == 'm' || argv[0] == 'M')
 			fract->fractal_type = 0;
-		else if (arg[0] == 'j' || arg[0] == 'J')
+		else if (argv[0] == 'j' || argv[0] == 'J')
+		{
 			fract->fractal_type = 1;
-		else if (arg[0] == 's' || arg[0] == 'S')
+			fract->c_re = -0.7;
+			fract->c_im = 0.27015;
+			if (argc == 4)
+			{
+				fract->c_re = ft_atof(argv[2]);
+				fract->c_im = ft_atof(argv[3]);
+			}
+		}
+		else if (argv[0] == 's' || argv[0] == 'S')
 			fract->fractal_type = 2;
 		else
 			return (0);
