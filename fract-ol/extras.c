@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extras.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: papprikka <papprikka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:09:34 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/23 16:06:58 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:08:07 by papprikka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,28 @@ void	init_fractol(t_fractol *fract)
 	fract->max_re = 2.0;
 	fract->min_im = -2.0;
 	fract->max_im = 2.0;
+	if (fract->fractal_type == 1)
+	{
+		fract->c_re = -0.7;
+		fract->c_im = 0.27015;
+	}
 }
 
 int	parse_fractal_type(t_fractol *fract, char *arg)
 {
-	if (arg[0] == 'm' || arg[0] == 'M')
-		fract->fractal_type = 0;
-	else if (arg[0] == 'j' || arg[0] == 'J')
-		fract->fractal_type = 1;
-	else if (arg[0] == 's' || arg[0] == 'S')
-		fract->fractal_type = 2;
-	else
-		return (0);
-	return (1);
+	if (arg && arg[0] && arg[1] == '\0')
+	{
+		if (arg[0] == 'm' || arg[0] == 'M')
+			fract->fractal_type = 0;
+		else if (arg[0] == 'j' || arg[0] == 'J')
+			fract->fractal_type = 1;
+		else if (arg[0] == 's' || arg[0] == 'S')
+			fract->fractal_type = 2;
+		else
+			return (0);
+		return (1);
+	}
+	return (ft_printf("Usage: ./fractol [M/m/J/j/S/s]\n"), 1);
 }
 
 void	init_fractal_vars(t_fractal_vars *vars, t_fractol *fract, int x, int y)

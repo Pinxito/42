@@ -3,28 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: papprikka <papprikka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:20:45 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/22 20:49:10 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/05/23 18:38:16 by papprikka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_fractol fract;
+	t_fractol	fract;
 
 	if (argc != 2)
-		return (ft_printf("Usage: ./fractol [fractale]\n"),1);
+		return (ft_printf("Usage: ./fractol [fractale]\n"), 1);
 	if (!parse_fractal_type(&fract, argv[1]))
-		return (ft_printf("Fractale inconnue.\n"),1);
-	if (fract.fractal_type == 1)
-	{
-		fract.c_re = -0.7;
-		fract.c_im = 0.27015;
-	}
+		return (ft_printf("Fractale inconnue.\n"), 1);
 	init_fractol(&fract);
 	render_fractal(&fract);
 	mlx_key_hook(fract.win, handle_keypress, &fract);
