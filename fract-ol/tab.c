@@ -72,12 +72,10 @@ static void	init_help_window(t_fractol *fract)
 }
 void	show_full_help(t_fractol *fract)
 {
-	init_fractol(fract);
 	init_help_window(fract);
 	put_help_header(fract);
 	put_help_body(fract);
 	put_help_footer(fract);
-	render_fractal(fract);
 	mlx_key_hook(fract->win, handle_keypress, fract);
 	mlx_mouse_hook(fract->win, handle_mouse, fract);
 	mlx_hook(fract->win, 17, 0, close_window, fract);
