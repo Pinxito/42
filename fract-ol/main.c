@@ -6,7 +6,7 @@
 /*   By: papprikka <papprikka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:20:45 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/23 23:25:54 by papprikka        ###   ########.fr       */
+/*   Updated: 2025/05/24 19:13:50 by papprikka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_fractol	fract;
 
-	if (argc != 2)
+	if (argc != 2 && argc != 4)
 	{
 		show_full_help(&fract);
 		return (ft_printf("Usage: ./fractol [fractale]\n"),1);
