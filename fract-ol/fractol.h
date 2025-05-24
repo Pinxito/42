@@ -77,7 +77,9 @@ int main();
 void ft_change_psychedelic_mode(t_fractol *fract);
 int ft_animate_psychedelic(t_fractol *fract);
 void init_fractol(t_fractol *fract);
-int parse_fractal_type(t_fractol *fract, char *arg);
+int parse_fractal_type(t_fractol *fract, int argc, char **argv);
+double	ft_atof(const char *str);
+void	show_full_help(t_fractol *fract);
 
 
 //printf

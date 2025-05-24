@@ -1,3 +1,5 @@
+#include"fractol.h"
+
 static double	ft_parse_decimal(const char *str, int *i)
 {
 	double	dec; 
@@ -37,16 +39,4 @@ double	ft_atof(const char *str)
 	if (str[i] == '.')
 		result += ft_parse_decimal(str, &i);
 	return (result * sign);
-}
-#include<stdio.h>
-int	main(int argc, char **argv)
-{
-	if (argc != 2)
-	{
-		printf("Uso: %s <numero>\n", argv[0]);
-		return (1);
-	}
-	double result = ft_atof(argv[1]);
-	printf("Resultado: %f\n", result);
-	return (0);
 }

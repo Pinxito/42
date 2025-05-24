@@ -6,7 +6,7 @@
 /*   By: papprikka <papprikka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:09:34 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/23 19:33:33 by papprikka        ###   ########.fr       */
+/*   Updated: 2025/05/24 17:49:48 by papprikka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	init_fractol(t_fractol *fract)
 	fract->max_im = 2.0;
 }
 
-int	parse_fractal_type(t_fractol *fract, int argc, char *argv)
+int	parse_fractal_type(t_fractol *fract, int argc, char **argv)
 {
-	if (argv && argv[0] && argv[1] == '\0')
+	if (argc >= 2 && argv[1] && argv[1][0] && argv[1][1] == '\0')
 	{
-		if (argv[0] == 'm' || argv[0] == 'M')
+		if (argv[1][0] == 'm' || argv[1][0] == 'M')
 			fract->fractal_type = 0;
-		else if (argv[0] == 'j' || argv[0] == 'J')
+		else if (argv[1][0] == 'j' || argv[1][0] == 'J')
 		{
 			fract->fractal_type = 1;
 			fract->c_re = -0.7;
@@ -53,13 +53,13 @@ int	parse_fractal_type(t_fractol *fract, int argc, char *argv)
 				fract->c_im = ft_atof(argv[3]);
 			}
 		}
-		else if (argv[0] == 's' || argv[0] == 'S')
+		else if (argv[1][0] == 's' || argv[1][0] == 'S')
 			fract->fractal_type = 2;
 		else
 			return (0);
 		return (1);
 	}
-	return (ft_printf("Usage: ./fractol [M/m/J/j/S/s]\n"), 1);
+	return (ft_printf("Usage: ./fractol [M/m/J/j/S/s]\n"), 0);
 }
 
 void	init_fractal_vars(t_fractal_vars *vars, t_fractol *fract, int x, int y)
