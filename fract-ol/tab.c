@@ -1,85 +1,57 @@
-#include <stdlib.h>
+
 #include "fractol.h"
-static void	put_help_header(t_fractol *fract)
-{
-	int y = 20;
 
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0xFFFFFF,
-		"╔══════════════════════════════════════════════════════╗");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0xFFFFFF,
-		"║                                                      ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0xFF0000,
-		"║     . ⚠️ FRACTOL - AVAILABLE PARAMETERS ⚠️ .      ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0xFFFFFF,
-		"║                                                      ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0x00FFFF,
-		"║  Usage: ./fractol [type] [optional parameters]        ║");
-}
-static void	put_help_body(t_fractol *fract)
-{
-	int y = 140;
+#define RESET      "\033[0m"
+#define RED        "\033[1;31m"
+#define GREEN      "\033[1;32m"
+#define YELLOW     "\033[1;33m"
+#define BLUE       "\033[1;34m"
+#define MAGENTA    "\033[1;35m"
+#define CYAN       "\033[1;36m"
+#define WHITE      "\033[1;37m"
 
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0x00FFFF,
-		"║                                                      ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0x00FFFF,
-		"║  Available types:                                     ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0x00FF00,
-		"║    ★ M/m : Mandelbrot                                 ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0x0000FF,
-		"║    ★ J/j : Julia (optionally: c_re c_im)              ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0xFF00FF,
-		"║    ★ S/s : Sinusoidal                                 ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0xFFFFFF,
-		"║                                                      ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0x00FFFF,
-		"║  Examples:                                             ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0xFFFFFF,
-		"║    ./fractol M                                        ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0xFFFFFF,
-		"║    ./fractol j -0.7 0.27015                            ║");
-}
-static void	put_help_footer(t_fractol *fract)
+static void	put_help_header(void)
 {
-	int y = 300;
-
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0xFFFFFF,
-		"║                                                      ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0xFFFF00,
-		"║  Controls:                                            ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0xFFFFFF,
-		"║    Arrow keys : move view                             ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0xFFFFFF,
-		"║    Mouse wheel : zoom in/out                          ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0xFFFFFF,
-		"║    'p' : psychedelic mode                             ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0xFFFFFF,
-		"║                                                      ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0x00FF00,
-		"║  Explore the fractals and have fun!                  ║");
-	mlx_string_put(fract->mlx, fract->win, 20, y += 20, 0xFFFFFF,
-		"╚══════════════════════════════════════════════════════╝");
+	ft_printf(WHITE"╔══════════════════════════════════════════════════════╗\n");
+	ft_printf("║                                                      ║\n");
+	ft_printf(RED"║     . ⚠️ FRACTOL - AVAILABLE PARAMETERS ⚠️ .         ║\n");
+	ft_printf(WHITE"║                                                      ║\n");
+	ft_printf(CYAN"║  Usage: ./fractol [type] [optional parameters]       ║\n");
+	ft_printf(WHITE"╚══════════════════════════════════════════════════════╝\n\n"RESET);
 }
 
-static void	init_help_window(t_fractol *fract)
+static void	put_help_body(void)
 {
-	fract->mlx = mlx_init();
-	if (!fract->mlx)
-		exit(1);
-
-	fract->win = mlx_new_window(fract->mlx, 600, 600, "Fractol - Help");
-	if (!fract->win)
-		exit(1);
+	ft_printf(CYAN"║                                                      ║\n");
+	ft_printf("║  Available types:                                    ║\n");
+	ft_printf(GREEN "║    ★ M/m : Mandelbrot                                ║\n");
+	ft_printf(BLUE  "║    ★ J/j : Julia (optionally: c_re c_im)             ║\n");
+	ft_printf(MAGENTA"║    ★ S/s : Sinusoidal                                ║\n");
+	ft_printf(CYAN"║                                                      ║\n");
+	ft_printf("║  Examples:                                           ║\n");
+	ft_printf(WHITE "║    ./fractol M                                       ║\n");
+	ft_printf("║    ./fractol j -0.7 0.27015                          ║\n"RESET);
 }
-void	show_full_help(t_fractol *fract)
+
+static void	put_help_footer(void)
 {
-	init_help_window(fract);
-	put_help_header(fract);
-	put_help_body(fract);
-	put_help_footer(fract);
-	mlx_key_hook(fract->win, handle_keypress, fract);
-	mlx_mouse_hook(fract->win, handle_mouse, fract);
-	mlx_hook(fract->win, 17, 0, close_window, fract);
-	mlx_loop_hook(fract->mlx, ft_animate_psychedelic, fract);
-	mlx_loop(fract->mlx);
+	ft_printf(WHITE"║                                                      ║\n");
+	ft_printf(YELLOW"║  Controls:                                           ║\n");
+	ft_printf(WHITE "║    Arrow keys : move view                            ║\n");
+	ft_printf("║    Mouse wheel : zoom in/out                         ║\n");
+	ft_printf("║    'p' : psychedelic mode                            ║\n");
+	ft_printf("║                                                      ║\n");
+	ft_printf(GREEN"║  Explore the fractals and have fun!                  ║\n");
+	ft_printf(WHITE"╚══════════════════════════════════════════════════════╝\n"RESET);
+}
+
+
+
+void	show_full_help(void)
+{
+	
+	put_help_header();
+	put_help_body();
+	put_help_footer();
 	
 }

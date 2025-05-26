@@ -6,7 +6,7 @@
 /*   By: papprikka <papprikka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:20:45 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/24 19:55:05 by papprikka        ###   ########.fr       */
+/*   Updated: 2025/05/25 11:54:26 by papprikka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	main(int argc, char **argv)
 
 	if (argc != 2 && argc != 4)
 	{
-		show_full_help(&fract);
+		show_full_help();
 		return (ft_printf("Usage: ./fractol [fractale]\n"),0);
 	}
 	if (!parse_fractal_type(&fract, argc, argv))
 	{
-		show_full_help(&fract);
+		show_full_help();
 		return (ft_printf("Fractale inconnue.\n"),1);
 	}
 	init_fractol(&fract);
