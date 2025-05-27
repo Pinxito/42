@@ -47,9 +47,7 @@ void bubble_sort(t_stack **a)
 // Función principal de ordenamiento
 void sort_stack(t_stack **a, t_stack **b, int size)
 {
-    //if (size <= 10)
-       // bubble_sort(a);
-    if (size <= 100)
+    if (size <= 500)
         chunk_sort(a, b, size);
     else
         radix_sort(a, b, size);
