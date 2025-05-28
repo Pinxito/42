@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: papprikka <papprikka@student.42.fr>        +#+  +:+       +#+         #
+#    By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/21 17:05:25 by gguillen          #+#    #+#              #
-#    Updated: 2025/05/23 22:45:35 by papprikka        ###   ########.fr        #
+#    Updated: 2025/05/28 02:33:38 by gguillen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS = main.c \
        ft_printf_outils3.c \
 	   tab.c \
 	   ft_atof.c \
+	   handle.c \
 
 
 OBJS = $(SRCS:.c=.o)

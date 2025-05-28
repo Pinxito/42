@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extras.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: papprikka <papprikka@student.42.fr>        +#+  +:+       +#+        */
+/*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:09:34 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/24 17:49:48 by papprikka        ###   ########.fr       */
+/*   Updated: 2025/05/28 02:04:31 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,16 @@ int	parse_fractal_type(t_fractol *fract, int argc, char **argv)
 
 void	init_fractal_vars(t_fractal_vars *vars, t_fractol *fract, int x, int y)
 {
-	vars->pr = fract->min_re + (x / (double)WIDTH) * (fract->max_re - fract->min_re);
-	vars->pi = fract->min_im + (y / (double)HEIGHT) * (fract->max_im - fract->min_im);
+	vars->pr = fract->min_re + (x / (double)WIDTH) * (fract->max_re
+			- fract->min_re);
+	vars->pi = fract->min_im + (y / (double)HEIGHT) * (fract->max_im
+			- fract->min_im);
 	vars->old_re = vars->pr;
 	vars->old_im = vars->pi;
 	vars->i = 0;
+}
+
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
 }

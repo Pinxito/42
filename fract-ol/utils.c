@@ -6,16 +6,11 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 19:48:45 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/22 20:44:22 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/05/28 02:19:49 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
 
 void	render_fractal(t_fractol *fract)
 {
@@ -27,7 +22,8 @@ void	render_fractal(t_fractol *fract)
 	if (fract->img)
 		mlx_destroy_image(fract->mlx, fract->img);
 	fract->img = mlx_new_image(fract->mlx, WIDTH, HEIGHT);
-	fract->addr = mlx_get_data_addr(fract->img, &fract->bpp, &fract->line_length, &fract->endian);
+	fract->addr = mlx_get_data_addr(fract->img, &fract->bpp,
+			&fract->line_length, &fract->endian);
 	y = 0;
 	while (y < HEIGHT)
 	{
@@ -68,25 +64,33 @@ int	get_color(int iter, t_fractol *fract)
 	return (create_trgb(0, r, g, b));
 }
 
+void	calculate_next(t_fractal_vars *vars, t_fractol *fract)
+{
+	if (fract->fractal_type == 0)
+	{
+		vars->new_re = vars->old_re * vars->old_re - vars->old_im * vars->old_im
+			+ vars->pr;
+		vars->new_im = 2 * vars->old_re * vars->old_im + vars->pi;
+	}
+	else if (fract->fractal_type == 2)
+	{
+		vars->new_re = sin(vars->old_re * vars->old_re - vars->old_im
+				* vars->old_im) + vars->pr;
+		vars->new_im = sin(2 * vars->old_re * vars->old_im) + vars->pi;
+	}
+	else
+	{
+		vars->new_re = vars->old_re * vars->old_re - vars->old_im * vars->old_im
+			+ fract->c_re;
+		vars->new_im = 2 * vars->old_re * vars->old_im + fract->c_im;
+	}
+}
+
 int	calculate_fractal(t_fractal_vars *vars, t_fractol *fract)
 {
 	while (vars->i < fract->max_iter)
 	{
-		if (fract->fractal_type == 0)
-		{
-			vars->new_re = vars->old_re * vars->old_re - vars->old_im * vars->old_im + vars->pr;
-			vars->new_im = 2 * vars->old_re * vars->old_im + vars->pi;
-		}
-		else if (fract->fractal_type == 2)
-		{
-			vars->new_re = sin(vars->old_re * vars->old_re - vars->old_im * vars->old_im) + vars->pr;
-			vars->new_im = sin(2 * vars->old_re * vars->old_im) + vars->pi;
-		}
-		else
-		{
-			vars->new_re = vars->old_re * vars->old_re - vars->old_im * vars->old_im + fract->c_re;
-			vars->new_im = 2 * vars->old_re * vars->old_im + fract->c_im;
-		}
+		calculate_next(vars, fract);
 		if ((vars->new_re * vars->new_re + vars->new_im * vars->new_im) > 4)
 			return (vars->i);
 		vars->old_re = vars->new_re;
