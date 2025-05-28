@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:20:45 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/28 13:54:31 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:13:16 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	if (!parse_fractal_type(&fract, argc, argv))
 	{
 		show_full_help();
-		return (ft_printf("Fractale inconnue.\n"), 1);
+		return (ft_printf("Unknown fractal or not a valid number.\n"), 1);
 	}
 	if (!validate_julia_range(&fract, argc))
 		return (1);
