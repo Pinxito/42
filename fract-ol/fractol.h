@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 02:37:51 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/28 02:50:22 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/05/28 13:53:39 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int							main(int argc, char **argv);
 void						ft_change_psychedelic_mode(t_fractol *fract);
 int							ft_animate_psychedelic(t_fractol *fract);
 void						init_fractol(t_fractol *fract);
+int							validate_julia_range(t_fractol *fract, int argc);
 int							parse_fractal_type(t_fractol *fract, int argc,
 								char **argv);
 double						ft_atof(const char *str);

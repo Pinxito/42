@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:20:45 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/28 01:43:42 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/05/28 13:54:31 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	main(int argc, char **argv)
 		show_full_help();
 		return (ft_printf("Fractale inconnue.\n"), 1);
 	}
+	if (!validate_julia_range(&fract, argc))
+		return (1);
 	init_fractol(&fract);
 	render_fractal(&fract);
 	mlx_key_hook(fract.win, handle_keypress, &fract);

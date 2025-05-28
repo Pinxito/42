@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 18:10:41 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/28 02:29:42 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/05/28 13:55:09 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,20 @@ void	put_pixel_to_image(t_fractol *fract, int x, int y, int iterations)
 		color = get_color(iterations, fract);
 	dst = fract->addr + (y * fract->line_length + x * (fract->bpp / 8));
 	*(unsigned int *)dst = color;
+}
+
+int	validate_julia_range(t_fractol *fract, int argc)
+{
+	if (argc == 4)
+	{
+		if (fract->c_re < -2.0 || fract->c_re > 2.0
+			|| fract->c_im < -2.0 || fract->c_im > 2.0)
+		{
+			show_full_help();
+			ft_printf("❌ Values out of range.\n");
+			ft_printf(" Please use numbers between -2.0 and 2.0\n");
+			return (0);
+		}
+	}
+	return (1);
 }

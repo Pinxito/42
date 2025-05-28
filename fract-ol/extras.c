@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:09:34 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/28 02:04:31 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:08:01 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	parse_fractal_type(t_fractol *fract, int argc, char **argv)
 			{
 				fract->c_re = ft_atof(argv[2]);
 				fract->c_im = ft_atof(argv[3]);
+				if (isnan(fract->c_re) || isnan(fract->c_im))
+					return (0);
 			}
 		}
 		else if (argv[1][0] == 's' || argv[1][0] == 'S')
