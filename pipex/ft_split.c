@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/28 13:16:39 by gguillen          #+#    #+#             */
+/*   Updated: 2025/05/28 13:16:42 by gguillen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 static int	ft_word(char const *s, char c)
@@ -21,7 +33,9 @@ static int	ft_word(char const *s, char c)
 
 static int	ft_wordlen(char const *s, char c, int i)
 {
-	int	len = 0;
+	int	len;
+
+	len = 0;
 	while (s[i] && s[i] != c)
 	{
 		len++;
@@ -32,8 +46,9 @@ static int	ft_wordlen(char const *s, char c, int i)
 
 static void	ft_free_split(char **tab)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	if (tab)
 	{
 		while (tab[i])
@@ -44,10 +59,12 @@ static void	ft_free_split(char **tab)
 
 static char	*ft_extract_word(char const *s, char c, int i)
 {
-	int		len = ft_wordlen(s, c, i);
-	char	*word = malloc(sizeof(char) * (len + 1));
+	int		len;
+	char	*word;
 	int		j;
 
+	len = ft_wordlen(s, c, i);
+	word = malloc(sizeof(char) * (len + 1));
 	if (!word)
 		return (NULL);
 	j = 0;
@@ -63,9 +80,11 @@ static char	*ft_extract_word(char const *s, char c, int i)
 char	**ft_split(char const *s, char c)
 {
 	char	**tab;
-	int		i = 0;
-	int		k = 0;
+	int		i;
+	int		k;
 
+	i = 0;
+	k = 0;
 	if (!s)
 		return (NULL);
 	tab = ft_calloc(sizeof(char *), (ft_word(s, c) + 1));

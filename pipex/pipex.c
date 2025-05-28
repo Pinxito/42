@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/28 13:18:19 by gguillen          #+#    #+#             */
+/*   Updated: 2025/05/28 13:18:26 by gguillen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 static void	ft_child_process(char **argv, char **envp, t_pipex *p)
@@ -38,20 +50,14 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc != 5)
 		ft_error(6);
-
 	if (pipe(p.fd) == -1)
 		ft_error(2);
-
 	p.pid = fork();
 	if (p.pid == -1)
 		ft_error(3);
-
 	if (p.pid == 0)
 		ft_child_process(argv, envp, &p);
-
 	waitpid(p.pid, NULL, 0);
-
 	ft_parent_process(argv, envp, &p);
-
 	return (0);
 }

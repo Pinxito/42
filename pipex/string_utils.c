@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   string_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/28 13:16:05 by gguillen          #+#    #+#             */
+/*   Updated: 2025/05/28 13:16:17 by gguillen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 void	*ft_calloc(int number, int size)
@@ -30,7 +42,9 @@ int	ft_strncmp(const char *s1, const char *s2, int n)
 
 int	ft_strlen(const char *str)
 {
-	int	i = 0;
+	int	i;
+
+	i = 0;
 	while (str[i])
 		i++;
 	return (i);
