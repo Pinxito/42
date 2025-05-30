@@ -1,34 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/28 00:10:05 by gguillen          #+#    #+#             */
+/*   Updated: 2025/05/29 15:38:13 by gguillen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int ft_atoi(const char *str, int *out)
-{
-	long result = 0;
-	int sign = 1;
-	int i = 0;
-
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	if (!str[i])
-		return (0); // No hay dígitos
-
-	while (str[i])
-	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
-		result = result * 10 + (str[i] - '0');
-		if ((sign == 1 && result > INT_MAX) || (sign == -1 && -result < INT_MIN))
-			return (0);
-		i++;
-	}
-	*out = (int)(result * sign);
-	return (1);
-}
-
-int is_duplicate(t_stack *a, int num)
+int	is_duplicate(t_stack *a, int num)
 {
 	while (a)
 	{
@@ -39,16 +23,16 @@ int is_duplicate(t_stack *a, int num)
 	return (0);
 }
 
-void push(t_stack **stack, int value)
+void	push(t_stack **stack, int value)
 {
-	t_stack *node = malloc(sizeof(t_stack));
-	t_stack *temp;
+	t_stack	*node;
+	t_stack	*temp;
 
+	node = malloc(sizeof(t_stack));
 	if (!node)
-		return;
+		return ;
 	node->value = value;
 	node->next = NULL;
-
 	if (!*stack)
 		*stack = node;
 	else
@@ -60,21 +44,30 @@ void push(t_stack **stack, int value)
 	}
 }
 
-t_stack *parse_input(int argc, char **argv)
+char	**get_numbers(int argc, char **argv)
 {
-	t_stack *a = NULL;
-	char **numbers;
-	int num, i = 0;
+	char	**numbers;
 
 	if (argc == 2)
 	{
 		numbers = ft_split(argv[1], ' ');
 		if (!numbers)
-			return (write(2, "Error1\n", 7), NULL);
+		{
+			write(2, "Error1\n", 7);
+			return (NULL);
+		}
 	}
 	else
 		numbers = &argv[1];
+	return (numbers);
+}
 
+int	validate_and_push(t_stack **stack, char **numbers, int argc)
+{
+	int	num;
+	int	i;
+
+	i = 0;
 	while (numbers[i])
 	{
 		if (!ft_atoi(numbers[i], &num))
@@ -82,23 +75,33 @@ t_stack *parse_input(int argc, char **argv)
 			write(2, "Error2\n", 7);
 			if (argc == 2)
 				free_split(numbers);
-			free_stack(&a);
-			return NULL;
+			return (free_stack(stack), 0);
 		}
-		if (is_duplicate(a, num))
+		if (is_duplicate(*stack, num))
 		{
 			write(2, "Error3\n", 7);
 			if (argc == 2)
 				free_split(numbers);
-			free_stack(&a);
-			return NULL;
+			return (free_stack(stack), 0);
 		}
-		push(&a, num);
+		push(stack, num);
 		i++;
 	}
-
-	if (argc == 2)
-		free_split(numbers);
-	return a;
+	return (1);
 }
 
+t_stack	*parse_input(int argc, char **argv)
+{
+	t_stack	*a;
+	char	**numbers;
+
+	a = NULL;
+	numbers = get_numbers(argc, argv);
+	if (!numbers)
+		return (NULL);
+	if (!validate_and_push(&a, numbers, argc))
+		return (NULL);
+	if (argc == 2)
+		free_split(numbers);
+	return (a);
+}

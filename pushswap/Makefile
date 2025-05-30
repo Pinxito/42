@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/05/29 15:46:45 by gguillen          #+#    #+#              #
+#    Updated: 2025/05/30 12:51:21 by gguillen         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = push_swap
 
 # Compilador y flags
@@ -19,7 +31,9 @@ SRC_FILES = main.c \
             sort.c \
             sorting_chunk.c \
             sorting_radix.c \
-			sorting_chunk_utils.c
+			sorting_chunk_utils.c \
+			sorting_chunk1.c \
+			ft_atoi.c \
 
 # Archivos de utilidades y funciones adicionales
 UTILS_FILES = ft_split.c \

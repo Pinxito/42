@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sorting_chunk_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/29 16:22:58 by gguillen          #+#    #+#             */
+/*   Updated: 2025/05/29 16:23:08 by gguillen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-
-
 
 void	stack_add_sorted(t_stack **stack, int value)
 {
@@ -26,12 +36,13 @@ void	stack_add_sorted(t_stack **stack, int value)
 	current->next = new;
 }
 
-
-t_stack *create_sorted_stack(t_stack *original)
+t_stack	*create_sorted_stack(t_stack *original)
 {
-	t_stack *sorted = NULL;
-	t_stack *temp = original;
+	t_stack	*sorted;
+	t_stack	*temp;
 
+	sorted = NULL;
+	temp = original;
 	while (temp)
 	{
 		stack_add_sorted(&sorted, temp->value);
@@ -40,21 +51,25 @@ t_stack *create_sorted_stack(t_stack *original)
 	return (sorted);
 }
 
-void assign_indexes(t_stack *stack)
+void	assign_indexes(t_stack *stack)
 {
-	t_stack *sorted = create_sorted_stack(stack);
-	t_stack *ptr = stack;
+	t_stack	*sorted;
+	t_stack	*ptr;
+	t_stack	*s;
+	int		index;
 
+	sorted = create_sorted_stack(stack);
+	ptr = stack;
 	while (ptr)
 	{
-		t_stack *s = sorted;
-		int index = 0;
+		s = sorted;
+		index = 0;
 		while (s)
 		{
 			if (s->value == ptr->value)
 			{
 				ptr->index = index;
-				break;
+				break ;
 			}
 			index++;
 			s = s->next;

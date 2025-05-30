@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/29 16:31:16 by gguillen          #+#    #+#             */
+/*   Updated: 2025/05/29 16:31:48 by gguillen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-#include <stdio.h>
 
 int	ft_format(va_list lista, const char *format)
 {
@@ -35,7 +46,7 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			contador += ft_format(lista, (char*)format);
+			contador += ft_format(lista, (char *)format);
 		}
 		else
 			contador += ft_putchar(*format);
