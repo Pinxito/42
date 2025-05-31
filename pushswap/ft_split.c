@@ -6,115 +6,101 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 16:45:18 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/29 16:49:19 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/05/31 05:03:29 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_sepa(char c, char delim)
+static int	ft_word(char const *s, char c)
 {
-	return (c == delim);
-}
+	int	i;
+	int	word;
 
-static int	palabras(char const *s, char c)
-{
-	int	palabra;
-	int	in_word;
-
-	palabra = 0;
-	in_word = 0;
-	while (*s)
+	i = 0;
+	word = 0;
+	while (s[i])
 	{
-		if (ft_sepa(*s, c))
-		{
-			in_word = 0;
-		}
-		else if (!in_word)
-		{
-			in_word = 1;
-			palabra++;
-		}
-		s++;
+		while (s[i] && s[i] == c)
+			i++;
+		if (s[i])
+			word++;
+		while (s[i] && s[i] != c)
+			i++;
 	}
-	return (palabra);
+	return (word);
 }
 
-// Función que calcula la longitud de una palabra hasta encontrar un delimitador.
-static size_t	talla(char const *s, char c)
+static int	ft_wordlen(char const *s, char c, int i)
 {
-	size_t	len;
+	int	len;
 
 	len = 0;
-	while (s[len] && !ft_sepa(s[len], c))
+	while (s[i] && s[i] != c)
+	{
 		len++;
+		i++;
+	}
 	return (len);
 }
 
-// Función que reserva y copia una palabra desde 's' hasta el siguiente delimitador.
-static char	*poner(char const *s, char c)
+static char	*ft_extract_word(char const *s, char c, int i)
 {
-	size_t	len;
-	char	*palabra;
-	size_t	i;
+	int		len;
+	char	*word;
+	int		j;
 
-	len = talla(s, c);
-	palabra = malloc((len + 1) * sizeof(char));
-	if (!palabra)
+	len = ft_wordlen(s, c, i);
+	word = malloc(sizeof(char) * (len + 1));
+	if (!word)
 		return (NULL);
-	i = 0;
-	while (i < len)
+	j = 0;
+	while (j < len)
 	{
-		palabra[i] = s[i];
-		i++;
+		word[j] = s[i + j];
+		j++;
 	}
-	palabra[i] = '\0';
-	return (palabra);
+	word[j] = '\0';
+	return (word);
+}
+
+static int	ft_fill_tab(char **tab, char const *s, char c)
+{
+	int	i;
+	int	k;
+
+	i = 0;
+	k = 0;
+	while (s[i])
+	{
+		while (s[i] && s[i] == c)
+			i++;
+		if (s[i])
+		{
+			tab[k] = ft_extract_word(s, c, i);
+			if (!tab[k])
+				return (0);
+			k++;
+		}
+		while (s[i] && s[i] != c)
+			i++;
+	}
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		i;
-	int		num_palabras;
-	char	**result;
+	char	**tab;
 
 	if (!s)
 		return (NULL);
-	num_palabras = palabras(s, c);
-	result = malloc((num_palabras + 1) * sizeof(char *));
-	if (!result)
+	tab = malloc(sizeof(char *) * (ft_word(s, c) + 1));
+	if (!tab)
 		return (NULL);
-	i = 0;
-	while (i < num_palabras)
+	if (!ft_fill_tab(tab, s, c))
 	{
-		while (*s && ft_sepa(*s, c))
-			s++;
-		result[i] = poner(s, c);
-		if (!result[i])
-		{
-			while (i > 0)
-			{
-				free(result[--i]);
-			}
-			free(result);
-			return (NULL);
-		}
-		i++;
-		while (*s && !ft_sepa(*s, c))
-			s++;
+		free_split(tab);
+		return (NULL);
 	}
-	result[i] = NULL;
-	return (result);
-}
-
-void	free_split(char **split)
-{
-	int	i;
-
-	i = 0;
-	if (!split)
-		return ;
-	while (split[i])
-		free(split[i++]);
-	free(split);
+	return (tab);
 }

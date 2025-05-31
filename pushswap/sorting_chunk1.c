@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 16:15:53 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/29 16:20:46 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/05/31 04:53:46 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,33 @@ void	push_single_chunk(t_stack **a, t_stack **b, int start, int end)
 
 void	push_chunks(t_stack **a, t_stack **b, int size)
 {
-	int	chunks;
-	int	chunk_size;
-	int	remainder;
+	t_chunk_info	info;
+
+	if (size <= 100)
+		info.chunks = 5;
+	else
+		info.chunks = 13;
+	info.chunk_size = size / info.chunks;
+	info.remainder = size % info.chunks;
+	push_chunks_loop(a, b, info);
+}
+
+void	push_chunks_loop(t_stack **a, t_stack **b, t_chunk_info info)
+{
+	int	i;
 	int	start;
 	int	end;
 
-	chunks = (size <= 100) ? 5 : 13;
-	chunk_size = size / chunks;
-	remainder = size % chunks;
+	i = 0;
 	start = 0;
-	for (int i = 0; i < chunks; i++)
+	while (i < info.chunks)
 	{
-		end = start + chunk_size;
-		if (i == chunks - 1)
-			end += remainder;
+		end = start + info.chunk_size;
+		if (i == info.chunks - 1)
+			end += info.remainder;
 		push_single_chunk(a, b, start, end);
 		start = end;
+		i++;
 	}
 }
 

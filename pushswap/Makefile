@@ -6,21 +6,17 @@
 #    By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/29 15:46:45 by gguillen          #+#    #+#              #
-#    Updated: 2025/05/30 12:51:21 by gguillen         ###   ########.fr        #
+#    Updated: 2025/05/31 11:22:54 by gguillen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
-
-# Compilador y flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 
-# Directorios
 DIR_SRC = ./
 DIR_UTILS = ./
 
-# Archivos fuente (sin bonus)
 SRC_FILES = main.c \
             input.c \
             pushutils.c \
@@ -35,8 +31,8 @@ SRC_FILES = main.c \
 			sorting_chunk1.c \
 			ft_atoi.c \
 
-# Archivos de utilidades y funciones adicionales
 UTILS_FILES = ft_split.c \
+			  ft_free.c \
               ft_printf.c \
               ft_printf_outils.c \
               ft_printf_outils1.c \

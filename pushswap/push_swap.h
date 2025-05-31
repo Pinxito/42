@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 16:27:34 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/29 16:28:53 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/05/31 04:54:38 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ typedef struct s_stack
 	int				index;
 	struct s_stack	*next;
 }					t_stack;
+typedef struct s_chunk_info
+{
+	int				chunks;
+	int				chunk_size;
+	int				remainder;
+}					t_chunk_info;
+
 int					ft_uitoa(unsigned int nb);
 int					ft_puthex(unsigned int num, const char format);
 int					ft_itoa(int n);
@@ -68,7 +75,6 @@ void				rr(t_stack **a, t_stack **b);
 void				ra(t_stack **a);
 void				rb(t_stack **b);
 void				rotate(t_stack **stack);
-// sort
 int					is_sorted(t_stack *a);
 void				bubble_sort(t_stack **a);
 void				sort_stack(t_stack **a, t_stack **b, int size);
@@ -79,8 +85,8 @@ int					find_max_index(t_stack *stack);
 int					get_position(t_stack *stack, int index);
 void				push_chunks(t_stack **a, t_stack **b, int size);
 void				chunk_sort(t_stack **a, t_stack **b, int size);
-
-// stack
+int					get_distance(t_stack *stack, int min, int max);
+void				rotate_b_to_top(t_stack **b, int pos, int size);
 void				free_stack(t_stack **stack);
 int					stack_size(t_stack *stack);
 t_stack				*rotate_to_first(t_stack *stack);
@@ -88,5 +94,9 @@ void				assign_indexes(t_stack *a);
 t_stack				*create_sorted_stack(t_stack *a);
 t_stack				*sort_stack_values(t_stack *stack);
 void				swap_nodes(t_stack *a, t_stack *b);
+void				sort_three(t_stack **a);
+void				free_split(char **split);
+void				push_chunks_loop(t_stack **a, t_stack **b,
+						t_chunk_info info);
 
 #endif
