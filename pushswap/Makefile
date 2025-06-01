@@ -6,7 +6,7 @@
 #    By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/29 15:46:45 by gguillen          #+#    #+#              #
-#    Updated: 2025/06/01 12:42:38 by gguillen         ###   ########.fr        #
+#    Updated: 2025/06/01 18:48:29 by gguillen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC_FILES = main.c \
 			sorting_chunk_utils.c \
 			sorting_chunk1.c \
 			ft_atoi.c \
+			radix_utils.c \
 
 UTILS_FILES = ft_split.c \
 			  ft_free.c \

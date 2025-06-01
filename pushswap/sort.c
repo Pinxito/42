@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 00:06:43 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/31 19:53:04 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/06/01 18:18:45 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,7 @@ void	sort_stack(t_stack **a, t_stack **b, int size)
 	else if (size <= 500)
 		chunk_sort(a, b, size);
 	else
+	{
 		radix_sort(a, b, size);
+	}
 }

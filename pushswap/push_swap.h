@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 16:27:34 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/31 04:54:38 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/06/01 18:33:38 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void				assign_indexes(t_stack *a);
 t_stack				*create_sorted_stack(t_stack *a);
 t_stack				*sort_stack_values(t_stack *stack);
 void				swap_nodes(t_stack *a, t_stack *b);
+void				assign_indexes1(t_stack *stack);
 void				sort_three(t_stack **a);
 void				free_split(char **split);
 void				push_chunks_loop(t_stack **a, t_stack **b,
