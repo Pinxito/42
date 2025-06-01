@@ -6,7 +6,7 @@
 #    By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/29 15:46:45 by gguillen          #+#    #+#              #
-#    Updated: 2025/05/31 11:22:54 by gguillen         ###   ########.fr        #
+#    Updated: 2025/06/01 12:42:38 by gguillen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,5 +91,4 @@ val:
 	@echo
 	valgrind --leak-check=full --show-leak-kinds=all ./push_swap
 
-# Definir phony para evitar conflictos con archivos del sistema
 .PHONY: all clean fclean re norme propre test val
