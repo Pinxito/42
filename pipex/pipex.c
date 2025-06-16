@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 13:18:19 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/28 13:18:26 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/06/14 14:01:07 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	ft_child_process(char **argv, char **envp, t_pipex *p)
 	{
 		perror(argv[1]);
 		ft_error(1);
+		exit(1);
 	}
 	close(p->fd[0]);
 	dup2(p->infile, STDIN_FILENO);
@@ -26,6 +27,7 @@ static void	ft_child_process(char **argv, char **envp, t_pipex *p)
 	close(p->fd[1]);
 	close(p->infile);
 	ft_exec_cmd(argv[2], envp, p);
+	exit(1);
 }
 
 static void	ft_parent_process(char **argv, char **envp, t_pipex *p)
@@ -35,6 +37,7 @@ static void	ft_parent_process(char **argv, char **envp, t_pipex *p)
 	{
 		perror(argv[4]);
 		ft_error(1);
+		exit(1);
 	}
 	close(p->fd[1]);
 	dup2(p->fd[0], STDIN_FILENO);
@@ -42,6 +45,7 @@ static void	ft_parent_process(char **argv, char **envp, t_pipex *p)
 	close(p->fd[0]);
 	close(p->outfile);
 	ft_exec_cmd(argv[3], envp, p);
+	exit(1);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -57,7 +61,14 @@ int	main(int argc, char **argv, char **envp)
 		ft_error(3);
 	if (p.pid == 0)
 		ft_child_process(argv, envp, &p);
+	p.pid2 = fork();
+	if (p.pid2 == -1)
+		ft_error(3);
+	if (p.pid2 == 0)
+		ft_parent_process(argv, envp, &p);
+	close(p.fd[0]);
+	close(p.fd[1]);
 	waitpid(p.pid, NULL, 0);
-	ft_parent_process(argv, envp, &p);
+	waitpid(p.pid2, NULL, 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 13:16:39 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/28 13:16:42 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/05/31 04:36:07 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,6 @@ static int	ft_wordlen(char const *s, char c, int i)
 	return (len);
 }
 
-static void	ft_free_split(char **tab)
-{
-	int	i;
-
-	i = 0;
-	if (tab)
-	{
-		while (tab[i])
-			free(tab[i++]);
-		free(tab);
-	}
-}
-
 static char	*ft_extract_word(char const *s, char c, int i)
 {
 	int		len;
@@ -77,19 +64,13 @@ static char	*ft_extract_word(char const *s, char c, int i)
 	return (word);
 }
 
-char	**ft_split(char const *s, char c)
+static int	ft_fill_tab(char **tab, char const *s, char c)
 {
-	char	**tab;
-	int		i;
-	int		k;
+	int	i;
+	int	k;
 
 	i = 0;
 	k = 0;
-	if (!s)
-		return (NULL);
-	tab = ft_calloc(sizeof(char *), (ft_word(s, c) + 1));
-	if (!tab)
-		return (NULL);
 	while (s[i])
 	{
 		while (s[i] && s[i] == c)
@@ -98,14 +79,28 @@ char	**ft_split(char const *s, char c)
 		{
 			tab[k] = ft_extract_word(s, c, i);
 			if (!tab[k])
-			{
-				ft_free_split(tab);
-				return (NULL);
-			}
+				return (0);
 			k++;
 		}
 		while (s[i] && s[i] != c)
 			i++;
+	}
+	return (1);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**tab;
+
+	if (!s)
+		return (NULL);
+	tab = ft_calloc(sizeof(char *), (ft_word(s, c) + 1));
+	if (!tab)
+		return (NULL);
+	if (!ft_fill_tab(tab, s, c))
+	{
+		ft_free_split(tab);
+		return (NULL);
 	}
 	return (tab);
 }

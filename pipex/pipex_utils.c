@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 13:17:02 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/28 13:17:29 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/06/14 14:01:34 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ void	ft_exec_cmd(char *cmd, char **envp, t_pipex *p)
 
 	cmd_list = ft_split(cmd, ' ');
 	if (!cmd_list)
+	{
 		ft_error(5);
+		exit(1);
+	}
 	ft_find_path(cmd_list[0], envp, p);
 	if (!p->path && access(cmd_list[0], F_OK | X_OK) == 0)
 		p->path = cmd_list[0];
@@ -70,17 +73,20 @@ void	ft_exec_cmd(char *cmd, char **envp, t_pipex *p)
 	{
 		ft_free(cmd_list);
 		ft_error(4);
+		exit(1);
 	}
 	if (execve(p->path, cmd_list, envp) == -1)
 	{
 		ft_free(cmd_list);
-		if (p->path != cmd_list[0]) // solo liberar si se hizo malloc
+		if (p->path != cmd_list[0])
 			free(p->path);
 		ft_error(0);
+		exit(1);
 	}
 	ft_free(cmd_list);
 	if (p->path != cmd_list[0])
 		free(p->path);
+	exit(0);
 }
 
 void	ft_error(int error)
@@ -100,7 +106,7 @@ void	ft_error(int error)
 	else if (error == 6)
 	{
 		ft_putstr_fd(ERR_ARG, 2);
-		ft_putstr_fd(FORMAT, 1);
+		ft_putstr_fd(FORMAT, 2);
 	}
 	exit(EXIT_FAILURE);
 }
