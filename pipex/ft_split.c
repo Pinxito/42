@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 13:16:39 by gguillen          #+#    #+#             */
-/*   Updated: 2025/05/31 04:36:07 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:48:50 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	if (!ft_fill_tab(tab, s, c))
 	{
-		ft_free_split(tab);
+		ft_free(tab);
 		return (NULL);
 	}
 	return (tab);

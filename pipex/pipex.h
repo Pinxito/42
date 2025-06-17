@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 13:15:36 by gguillen          #+#    #+#             */
-/*   Updated: 2025/06/14 13:47:38 by gguillen         ###   ########.fr       */
+/*   Updated: 2025/06/17 21:21:15 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,32 @@ typedef struct s_pipex
 void		ft_exec_cmd(char *cmd, char **envp, t_pipex *p);
 void		ft_error(int error);
 void		ft_free(char **tab);
-
+int			handle_exit_code(pid_t pid1, pid_t pid2);
+void		ft_find_path(char *cmd, char **envp, t_pipex *p);
+int			contains_quotes(char *cmd);
+char		**ft_split_with_quotes(const char *s);
 // String Utils
 void		ft_putstr_fd(char *s, int fd);
 void		*ft_calloc(int number, int size);
 char		**ft_split(char const *s, char c);
 int			ft_strncmp(const char *s1, const char *s2, int n);
 char		*ft_strjoin(char *s1, char *s2);
-void		ft_free_split(char **tab);
+char		*ft_strdup(const char *s);
+// split
+int			is_quote(char c);
+int			is_escaped(const char *s, int pos);
+int			word_length(const char *s, int i);
+int			quoted_word_length(const char *s, int i);
+int			unquoted_word_length(const char *s, int i);
+char		*extract_quoted_word(const char *s, int *i);
+char		*extract_unquoted_word(const char *s, int *i);
+char		*extract_word(const char *s, int *i);
+void		skip_quoted_word(const char *s, int *i);
+void		skip_unquoted_word(const char *s, int *i);
+int			count_words(const char *s);
+char		**build_split_array(const char *s, int words);
+int			fill_split_array(const char *s, char **result);
+char		**allocate_result(int words);
+char		**ft_split_with_quotes(const char *s);
 
 #endif

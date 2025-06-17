@@ -6,7 +6,7 @@
 #    By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/31 01:06:15 by gguillen          #+#    #+#              #
-#    Updated: 2025/06/13 13:00:05 by gguillen         ###   ########.fr        #
+#    Updated: 2025/06/17 20:47:25 by gguillen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,11 @@ SRCS		= pipex.c \
 			  pipex_utils.c \
 			  ft_split.c \
 			  string_utils.c \
-			  ft_free.c
+			  string_utils2.c \
+			  pipex_path.c \
+			  ft_split_quotes.c \
+			  ft_split_quotes_utils.c \
+			   ft_split_quotes2.c 
 
 OBJS		= $(SRCS:.c=.o)
 
