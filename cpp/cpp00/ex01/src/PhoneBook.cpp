@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 22:39:55 by gguillen          #+#    #+#             */
-/*   Updated: 2026/08/07 22:39:59 by gguillen         ###   ########.fr       */
+/*   Updated: 2026/08/08 02:51:11 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ int PhoneBook::add(int i)
 	std::string nickName;
 	std::string phoneNumber;
 	std::string darkestSecret;
-	if (i == 7)
-		i = 0;
+	i = i % 8;
 	std::cout << "Please, Add the first name of the contact" << std::endl;
 	while (true)
 	{
@@ -170,7 +169,7 @@ void PhoneBook::search() const
 	}
 	std::cout << "Enter an index to have all the informations of the contact" << std::endl;
 	std::cin >> index;
-	if (index > 9 || index < 0 || std::cin.fail())
+	if (index > 7 || index < 0 || std::cin.fail())
 	{
 		std::cout << "Index out of range or incorrect. Please enter an index between 0 and 7: ";
 		std::cin.clear();
@@ -184,6 +183,8 @@ void PhoneBook::search() const
 		std::cout << "Name : " << this->_contacts[index].getFirstName() << std::endl;
 		std::cout << "Last name : " << this->_contacts[index].getLastName() << std::endl;
 		std::cout << "Nick name : " << this->_contacts[index].getNickName() << std::endl;
+        std::cout << "Phone number : " << this->_contacts[index].getPhoneNumber() << std::endl;
+		std::cout << "Darkest secret : " << this->_contacts[index].getDarkestSecret() << std::endl;
 	}
 	else
 		std::cout << "Index " << index << " is not attributed yet" << std::endl;

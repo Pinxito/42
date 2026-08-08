@@ -6,7 +6,7 @@
 #    By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/07 22:15:59 by gguillen          #+#    #+#              #
-#    Updated: 2026/08/07 22:16:18 by gguillen         ###   ########.fr        #
+#    Updated: 2026/08/08 03:05:24 by gguillen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,13 @@ NAME = megaphone
 all: $(NAME)
 
 $(NAME): $(OBJ)
-    $(CC) $(FLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 clean:
-    $(RM) $(OBJ)
+	$(RM) $(OBJ)
 
 fclean: clean
-    $(RM) $(NAME)
+	$(RM) $(NAME)
 
 re: fclean $(NAME)
 

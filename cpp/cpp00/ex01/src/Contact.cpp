@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 22:35:57 by gguillen          #+#    #+#             */
-/*   Updated: 2026/08/07 22:39:27 by gguillen         ###   ########.fr       */
+/*   Updated: 2026/08/08 02:57:34 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,13 @@ void Contact::setLastName(const std::string str)
     this->lastName = str;
 }
 void Contact::setPhoneNumber(const std::string str)
+{   
+    this->phoneNumber = str;
+}    
+void Contact::setDarkestSecret(const std::string str)
 {
     this->darkestSecret = str;
 }
-void Contact::setDarkestSecret(const std::string str)
-{
-    this->phoneNumber = str;
-}
-
 std::string Contact::getFirstName() const
 {
     return (this->firstName);
@@ -57,9 +56,9 @@ std::string Contact::getLastName() const
 }
 std::string Contact::getPhoneNumber() const
 {
-    return (this->darkestSecret);
+    return (this->phoneNumber);
 }
 std::string Contact::getDarkestSecret() const
 {
-    return (this->phoneNumber);
+    return (this->darkestSecret);
 }
