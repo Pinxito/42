@@ -14,9 +14,6 @@
 
 int		ft_strlen_p(char *s);
 
-/*
-** Affiche le message d'erreur au format imposé par le sujet et quitte.
-*/
 void	parse_error(char *msg)
 {
 	write(2, "Error\n", 6);
@@ -25,18 +22,11 @@ void	parse_error(char *msg)
 	exit(1);
 }
 
-/*
-** Retourne 1 si c est un espace/tab/CR, 0 sinon.
-*/
 int	ft_isspace_c(char c)
 {
 	return (c == ' ' || c == '\t' || c == '\r');
 }
 
-/*
-** Vérifie que le fichier se termine par ".rt".
-** Retourne 1 si OK, 0 sinon.
-*/
 int	check_extension(char *file)
 {
 	int	len;
@@ -50,10 +40,6 @@ int	check_extension(char *file)
 		&& file[len - 1] == 't');
 }
 
-/*
-** ft_strlen_p : strlen maison (le nom ft_strlen est souvent en libft,
-** on utilise un suffixe _p pour éviter les conflits si libft est liée).
-*/
 int	ft_strlen_p(char *s)
 {
 	int	i;

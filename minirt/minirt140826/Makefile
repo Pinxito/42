@@ -1,4 +1,3 @@
-# ===== ORIGINAL CODE: Project structure (minirt) =====
 NAME = minirt
 
 CC = cc

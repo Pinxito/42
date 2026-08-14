@@ -12,10 +12,6 @@
 
 #include "parsing.h"
 
-/*
-** Compte le nombre de champs (pointeurs non-NULL) dans un tableau
-** terminé par NULL.
-*/
 int	ft_count_fields(char **fields)
 {
 	int	n;
@@ -28,9 +24,6 @@ int	ft_count_fields(char **fields)
 	return (n);
 }
 
-/*
-** Libère un tableau de chaînes alloué dynamiquement.
-*/
 void	ft_free_fields(char **fields)
 {
 	int	i;
@@ -43,13 +36,7 @@ void	ft_free_fields(char **fields)
 	free(fields);
 }
 
-/*
-** Forward declaration for helper functions
-*/
 int			ft_isspace_c(char c);
-
-/* ft_split_spaces : découpe une ligne sur les espaces/tabs.          */
-/* Retourne un tableau de chaînes terminé par NULL, ou NULL si erreur. */
 
 static int	count_words(char *s)
 {

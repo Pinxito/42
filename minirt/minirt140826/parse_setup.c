@@ -30,9 +30,6 @@ static int	loop_hook(void *param)
 	return (0);
 }
 
-/*
-** Gestionnaire de touche : ferme la fenêtre sur ESC (keycode 65307).
-*/
 static int	key_hook(int keycode, void *param)
 {
 	t_scene	*scene;
@@ -43,10 +40,6 @@ static int	key_hook(int keycode, void *param)
 	return (0);
 }
 
-/*
-** Initialise MinilibX, crée la fenêtre et branche les hooks.
-** Appelé APRÈS validation complète du parsing.
-*/
 static int	init_mlx(t_scene *scene)
 {
 	scene->mlx.mlx = mlx_init();
@@ -63,10 +56,6 @@ static int	init_mlx(t_scene *scene)
 	return (1);
 }
 
-/*
-** setup_scene : initialise la caméra (base orthonormée) et MinilibX.
-** Appelé depuis parse_main après parse_scene réussi.
-*/
 int	setup_scene(t_scene *scene, t_parse_flags *flags, char *file)
 {
 	(void)file;

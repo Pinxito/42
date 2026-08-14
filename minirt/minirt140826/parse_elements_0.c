@@ -12,10 +12,6 @@
 
 #include "parsing.h"
 
-/*
-** Format : A <ratio> <r,g,b>
-** fields[0]="A"  fields[1]=ratio  fields[2]="r,g,b"
-*/
 int	parse_ambient(t_scene *scene, t_parse_flags *flags, char **fields,
 		int nfields)
 {
@@ -31,10 +27,6 @@ int	parse_ambient(t_scene *scene, t_parse_flags *flags, char **fields,
 	return (1);
 }
 
-/*
-** Format : C <x,y,z> <x,y,z> <fov>
-** fields[0]="C"  fields[1]=pos  fields[2]=dir  fields[3]=fov
-*/
 int	parse_camera(t_scene *scene, t_parse_flags *flags, char **fields,
 		int nfields)
 {
@@ -55,10 +47,6 @@ int	parse_camera(t_scene *scene, t_parse_flags *flags, char **fields,
 	return (1);
 }
 
-/*
-** Format : L <x,y,z> <brightness> <r,g,b>
-** fields[0]="L"  fields[1]=pos  fields[2]=brightness  fields[3]=rgb
-*/
 int	parse_light(t_scene *scene, t_parse_flags *flags, char **fields,
 		int nfields)
 {

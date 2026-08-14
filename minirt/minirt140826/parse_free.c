@@ -12,10 +12,7 @@
 
 #include "parsing.h"
 
-/*
-** Libère la liste chaînée d'objets de la scène.
-** Libère aussi le data (sp/pl/cy) de chaque nœud.
-*/
+
 void	free_scene_objects(t_scene *scene)
 {
 	t_object	*cur;
@@ -33,10 +30,6 @@ void	free_scene_objects(t_scene *scene)
 	scene->objects = NULL;
 }
 
-/*
-** Libère toutes les ressources allouées dans la scène.
-** À appeler en cas d'erreur après un parsing partiel.
-*/
 void	free_scene_full(t_scene *scene)
 {
 	free_scene_objects(scene);
