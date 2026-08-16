@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/ex00/includes",
+                "${workspaceFolder}/ex01/includes",
+                "${workspaceFolder}/ex02/includes"
+            ],
+            "compilerPath": "/usr/bin/clang++",
+            "cStandard": "c17",
+            "cppStandard": "c++98",
+            "intelliSenseMode": "macos-clang-arm64",
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "${workspaceFolder}/ex00/includes",
+                    "${workspaceFolder}/ex01/includes"
+                ]
+            }
+        }
+    ],
+    "version": 4
+}
