@@ -6,19 +6,19 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/12 19:58:32 by gguillen          #+#    #+#             */
-/*   Updated: 2026/08/12 20:40:24 by gguillen         ###   ########.fr       */
+/*   Updated: 2026/08/18 06:45:53 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-
+ 
 int	main(void)
 {
 	Fixed	a;
 	Fixed const b(10);
 	Fixed const c(42.42f);
 	Fixed const d(b);
-
+ 
 	a = Fixed(1234.4321f);
 	std::cout << "a is " << a << std::endl;
 	std::cout << "b is " << b << std::endl;

@@ -15,7 +15,8 @@
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
                     "${workspaceFolder}/ex00/includes",
-                    "${workspaceFolder}/ex01/includes"
+                    "${workspaceFolder}/ex01/includes",
+                    "${workspaceFolder}/ex02/includes"
                 ]
             }
         }

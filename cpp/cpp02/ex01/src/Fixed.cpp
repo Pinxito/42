@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/12 20:00:19 by gguillen          #+#    #+#             */
-/*   Updated: 2026/08/12 20:36:30 by gguillen         ###   ########.fr       */
+/*   Updated: 2026/08/18 07:00:03 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 Fixed::Fixed(void)
 {
-	std::cout << "Fixed constructor called" << std::endl;
+	std::cout << "Default constructor called" << std::endl;
 	this->_nb = 0;
 }
 
 Fixed::Fixed(const int nb)
 {
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << "Int constructor called" << std::endl;
 	this->_nb = nb << Fixed::_fracBits;
 }
 
@@ -33,7 +33,7 @@ Fixed::Fixed(const float nb)
 Fixed::Fixed(Fixed const &other)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	operator=(other);
+	*this = other;
 }
 
 Fixed& Fixed::operator=(Fixed const& src)
