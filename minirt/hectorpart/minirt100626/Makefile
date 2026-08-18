@@ -1,10 +1,9 @@
-# ===== ORIGINAL CODE: Project structure (minirt) =====
-NAME = minirt
+NAME = miniRT
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I. -Iminilibx-linux
-LDFLAGS = -Lminilibx-linux -L/usr/lib -L/usr/X11R6/lib
-LIBS = -lmlx -lX11 -lXext -lm
+CFLAGS = -Wall -Wextra -Werror -I. -Iminilibx
+LDFLAGS = -Lminilibx -Wl,-rpath,@executable_path/minilibx
+LIBS = -lmlx -framework OpenGL -framework AppKit
 
 SRCS_ORIG = camera.c color.c maths_0.c maths_1.c render.c render_1.c sphere.c \
 			lambert.c cylindre.c plan.c
