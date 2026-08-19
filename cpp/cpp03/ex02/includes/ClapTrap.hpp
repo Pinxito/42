@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/14 20:35:38 by gguillen          #+#    #+#             */
-/*   Updated: 2026/08/19 03:57:45 by gguillen         ###   ########.fr       */
+/*   Created: 2026/08/19 03:02:59 by gguillen          #+#    #+#             */
+/*   Updated: 2026/08/19 03:33:38 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 class ClapTrap
 {
-	private:
+	protected:
 		std::string	_name;
 		int			_hitPoints;
 		int			_energyPoints;
@@ -27,7 +27,7 @@ class ClapTrap
 		ClapTrap(void);
 		ClapTrap(std::string const &name);
 		ClapTrap(ClapTrap const &src);
-		~ClapTrap(void);
+		virtual ~ClapTrap(void);
 		ClapTrap	&operator=(ClapTrap const &rhs);
 
 		std::string	getName(void) const;

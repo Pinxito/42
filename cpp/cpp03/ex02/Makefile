@@ -5,13 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/08/14 23:25:53 by gguillen          #+#    #+#              #
-#    Updated: 2026/08/19 04:09:31 by gguillen         ###   ########.fr        #
+#    Created: 2026/08/19 03:04:29 by gguillen          #+#    #+#              #
+#    Updated: 2026/08/19 03:15:56 by gguillen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME		= FragTrap
 
-NAME		= ScavTrap
 CPP			= c++
 CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -Iincludes -MMD -MP
 

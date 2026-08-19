@@ -6,26 +6,41 @@
 #    By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/14 20:36:56 by gguillen          #+#    #+#              #
-#    Updated: 2026/08/14 20:37:01 by gguillen         ###   ########.fr        #
+#    Updated: 2026/08/19 04:00:20 by gguillen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = src/main.cpp src/ClapTrap.cpp
-OBJ = $(SRC:.cpp=.o)
-CC = c++
-RM = rm -f
-FLAGS = -Wall -Wextra -Werror -std=c++98
+
 NAME = ClapTrap
-INCLUDE = includes
-HEADERS = $(wildcard $(INCLUDE)/*.hpp)
+CPP			= c++
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++98 -Iincludes -MMD -MP
+
+RM			= rm -rf
+
+SRCS		= src/main.cpp \
+			  src/ClapTrap.cpp
+
+OBJS_DIR	= build/
+
+OBJS		= $(addprefix $(OBJS_DIR), $(SRCS:.cpp=.o))
+
 all: $(NAME)
-$(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
-%.o: %.cpp $(HEADERS)
-	$(CC) $(FLAGS) -I$(INCLUDE) -c $< -o $@
+
+$(NAME): $(OBJS)
+	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
+
+$(OBJS_DIR)%.o: %.cpp
+	mkdir -p $(dir $@)
+	$(CPP) $(CPPFLAGS) -c $< -o $@
+
+-include $(OBJS:.o=.d)
+
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJS_DIR)
+
 fclean: clean
 	$(RM) $(NAME)
-re: fclean $(NAME)
+
+re: fclean all
+
 .PHONY: all clean fclean re
