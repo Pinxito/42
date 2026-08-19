@@ -19,8 +19,7 @@ RM			= rm -rf
 
 SRCS		= src/main.cpp \
 			  src/ClapTrap.cpp \
-			  src/ScavTrap.cpp \
-			  src/FragTrap.cpp
+			  src/ScavTrap.cpp 
 
 OBJS_DIR	= build/
 

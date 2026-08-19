@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/19 03:02:59 by gguillen          #+#    #+#             */
-/*   Updated: 2026/08/19 03:33:38 by gguillen         ###   ########.fr       */
+/*   Created: 2026/08/14 23:15:11 by gguillen          #+#    #+#             */
+/*   Updated: 2026/08/19 04:06:49 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 class ClapTrap
 {
-	protected:
+	private:
 		std::string	_name;
 		int			_hitPoints;
 		int			_energyPoints;
@@ -27,13 +27,16 @@ class ClapTrap
 		ClapTrap(void);
 		ClapTrap(std::string const &name);
 		ClapTrap(ClapTrap const &src);
-		virtual ~ClapTrap(void);
+		~ClapTrap(void);
 		ClapTrap	&operator=(ClapTrap const &rhs);
 
 		std::string	getName(void) const;
 		int			getHitPoints(void) const;
 		int			getEnergyPoints(void) const;
 		int			getDamagePoints(void) const;
+		void		setHitPoints( int p);
+		void		setEnergyPoints(int p);
+		void		setDamagePoints(int p);
 
 		void	attack(const std::string &target);
 		void	takeDamage(unsigned int amount);

@@ -39,7 +39,7 @@ int	main(void)
 	karen.beRepaired(3);
 
 	separator("6. takeDamage() bringing hp exactly to 0");
-	karen.takeDamage(8); // hp: 8 -> 0
+	karen.takeDamage(9); // hp: 8 -> 0
 
 	separator("7. attack() while hp == 0 (must fail)");
 	karen.attack("felix");
