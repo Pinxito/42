@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 20:34:53 by gguillen          #+#    #+#             */
-/*   Updated: 2026/08/19 03:58:23 by gguillen         ###   ########.fr       */
+/*   Updated: 2026/08/19 11:33:39 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,23 +64,6 @@ int	ClapTrap::getDamagePoints(void) const
 {
 	return (this->_attackDamage);
 }
-// -------------Setters -------------
-
-void ClapTrap::setHitPoints(int p)
-{
-	this->_hitPoints = p;
-}
-
-void ClapTrap::setEnergyPoints(int p)
-{
-	this->_energyPoints = p;
-}
-
-void ClapTrap::setDamagePoints(int p)
-{
-	this->_attackDamage = p;
-}
-
 // ----------------- Actions --------------
 void	ClapTrap::attack(const std::string &target)
 {

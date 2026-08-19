@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 23:14:48 by gguillen          #+#    #+#             */
-/*   Updated: 2026/08/19 04:13:45 by gguillen         ###   ########.fr       */
+/*   Updated: 2026/08/19 11:46:50 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ int	main(void)
 		<< " ep:" << assignedScav.getEnergyPoints() << std::endl;
 
 	separator("PART 11 - Self-assignment (a = a) must not break anything");
-	assignedScav = assignedScav;
+	ScavTrap *selfPtr = &assignedScav;
+	assignedScav = *selfPtr;
 	std::cout << assignedScav.getName() << " still hp:" << assignedScav.getHitPoints() << std::endl;
 
 	separator("PART 12 - Destruction chain (must destroy ScavTrap first, then ClapTrap)");

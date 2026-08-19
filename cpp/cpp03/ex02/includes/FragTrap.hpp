@@ -6,26 +6,26 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 03:06:10 by gguillen          #+#    #+#             */
-/*   Updated: 2026/08/19 03:06:13 by gguillen         ###   ########.fr       */
+/*   Updated: 2026/08/19 11:52:07 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma	once
+#ifndef FRAGTRAP_HPP
+#define FRAGTRAP_HPP
 
 #include "ClapTrap.hpp"
 
 class FragTrap : public ClapTrap
 {
-	private:
 	public:
-		FragTrap();
-		FragTrap(const std::string &newName);
-		FragTrap(const FragTrap &cpy);
-		~FragTrap();
-		FragTrap	&operator= (const FragTrap &rhs);
+		FragTrap(void);
+		FragTrap(std::string const &name);
+		FragTrap(FragTrap const &src);
+		~FragTrap(void);
+		FragTrap	&operator=(FragTrap const &rhs);
 
-		void	attack(const std::string& target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
-		void	highFivesGuys();
+		void	attack(const std::string &target);
+		void	highFivesGuys(void);
 };
+
+#endif

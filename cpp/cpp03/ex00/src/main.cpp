@@ -6,6 +6,18 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 20:34:16 by gguillen          #+#    #+#             */
+/*   Updated: 2026/08/19 11:27:45 by gguillen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/14 20:34:16 by gguillen          #+#    #+#             */
 /*   Updated: 2026/08/19 04:14:49 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -75,7 +87,8 @@ int	main(void)
 		<< " ep:" << assigned.getEnergyPoints() << std::endl;
 
 	separator("14. Self-assignment (a = a) must not break anything");
-	assigned = assigned;
+	ClapTrap *selfPtr = &assigned;
+	assigned = *selfPtr;
 	std::cout << assigned.getName() << " still hp:" << assigned.getHitPoints() << std::endl;
 
 	separator("15. Destructor calls happen when leaving scope");

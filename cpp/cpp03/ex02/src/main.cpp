@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 03:05:43 by gguillen          #+#    #+#             */
-/*   Updated: 2026/08/19 04:14:12 by gguillen         ###   ########.fr       */
+/*   Updated: 2026/08/19 11:54:25 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,10 @@ int	main(void)
 	std::cout << assignedFrag.getName() << " (assigned) hp:" << assignedFrag.getHitPoints() << std::endl;
 
 	separator("PART 12 - Self-assignment (a = a) must not break anything");
-	assignedScav = assignedScav;
-	assignedFrag = assignedFrag;
+	ScavTrap *selfPtrScav = &assignedScav;
+	assignedScav = *selfPtrScav;
+	FragTrap *selfPtrFrag = &assignedFrag;
+	assignedFrag = *selfPtrFrag;
 	std::cout << assignedScav.getName() << " still hp:" << assignedScav.getHitPoints() << std::endl;
 	std::cout << assignedFrag.getName() << " still hp:" << assignedFrag.getHitPoints() << std::endl;
 

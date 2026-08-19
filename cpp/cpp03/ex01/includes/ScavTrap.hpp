@@ -6,7 +6,7 @@
 /*   By: gguillen <gguillen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 04:07:51 by gguillen          #+#    #+#             */
-/*   Updated: 2026/08/19 04:07:55 by gguillen         ###   ########.fr       */
+/*   Updated: 2026/08/19 11:45:19 by gguillen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ class ScavTrap : public ClapTrap
 		ScavTrap	&operator=(ScavTrap const &rhs);
 
 		void	attack(const std::string &target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
 		void	guardGate(void);
 };
 
